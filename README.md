@@ -1,27 +1,27 @@
-# WindForecastWebsite
+# Paramétrage SSL
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.6.
+## Certbot
 
-## Development server
+Installation : 
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+```bash
+sudo apt-get install certbot
+```
 
-## Code scaffolding
+Paramétrage manuel :
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```bash
+sudo certbot certonly --manual
+```
 
-## Build
+Suivre les instructions consistant à mettre à disposition un fichier avec un nom et un contenu spécifique afin de prouver que le domaine pour lequel on génère le certificat nous appartient bien. Un exemple se trouve dans le dossier `certbot/.well-known/acme-challenge`.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Récupérer le certificat et la clé privé générés depuis le dossier `/etc/letsencrypt/live/<mon.domain.suffix>`
 
-## Running unit tests
+> En utilisant un reverse proxy, comme par exemple nginx, il est possible de paramétrer certbot pour avoir un renouvellement automatique du certificat.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Démarrer le site en utilisant un certificat SSL
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```bash
+http-server dist\wind-forecast-website --ssl -p 8080 -C fullchain.pem -K privkey.pem 
+```
