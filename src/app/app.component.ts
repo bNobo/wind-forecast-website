@@ -15,7 +15,8 @@ export class AppComponent {
   };
 
   private _subscription: PushSubscription | null = null;
-  private baseUrl: string = 'http://localhost:5000/';
+  private baseUrl: string = 'https://boncocotier.duckdns.org:8080/';
+  //private baseUrl: string = 'https://localhost:5001/';
   public operationName: string = 'Subscribe';
 
   constructor(
