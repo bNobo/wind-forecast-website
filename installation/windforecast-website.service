@@ -1,0 +1,13 @@
+[Unit]
+Description=Wind forecast Web site
+
+[Service]
+WorkingDirectory=/home/pi/windforecast-website
+ExecStart=/usr/lib/node_modules/http-server/bin/http-server . -C ../fullchain.pem -K ../privkey.pem --ssl
+Restart=always
+RestartSec=30
+SyslogIdentifier=windforecast-website
+User=pi
+
+[Install]
+WantedBy=multi-user.target
