@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { SwPush } from '@angular/service-worker';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { environment } from '../environments/environment';
+import { environment } from '../../../environments/environment';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-register-button',
+  templateUrl: './register-button.component.html',
+  styleUrls: ['./register-button.component.css']
 })
-export class AppComponent {
+export class RegisterButtonComponent {
   readonly httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -22,7 +22,7 @@ export class AppComponent {
   constructor(
     private swPush: SwPush,
     private httpClient: HttpClient) {
-    swPush.subscription.subscribe((subscription) => {
+      swPush.subscription.subscribe((subscription) => {
       this._subscription = subscription;
       this.operationName = (this._subscription === null) ? 'Subscribe' : 'Unsubscribe';
     });
