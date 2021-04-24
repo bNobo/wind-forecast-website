@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RegisterFormComponent } from '../views/register-form/register-form.component';
-import { RegisterButtonComponent } from '../views/register-button/register-button.component';
+import { RegisterFormComponent } from '../features/notification/register-form/register-form.component';
+import { RegisterButtonComponent } from '../features/notification/register-button/register-button.component';
 
 
 
@@ -9,6 +9,9 @@ import { RegisterButtonComponent } from '../views/register-button/register-butto
   declarations: [RegisterFormComponent, RegisterButtonComponent],
   imports: [
     CommonModule
+  ],
+  exports: [
+    RegisterFormComponent
   ]
 })
 export class NotificationModule { }

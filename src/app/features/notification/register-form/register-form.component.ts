@@ -12,4 +12,10 @@ export class RegisterFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  public subscribed = false;
+
+  setSubscribed(subscribed: boolean)
+  {
+    this.subscribed = subscribed;
+  }
 }

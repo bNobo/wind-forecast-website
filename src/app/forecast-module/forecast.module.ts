@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TomorrowForecastComponent } from '../views/tomorrow-forecast/tomorrow-forecast.component';
-import { WeatherTileComponent } from '../views/weather-tile/weather-tile.component';
+import { TomorrowForecastComponent } from '../features/forecast/tomorrow-forecast/tomorrow-forecast.component';
+import { WeatherTileComponent } from '../features/forecast/weather-tile/weather-tile.component';
 
 
 

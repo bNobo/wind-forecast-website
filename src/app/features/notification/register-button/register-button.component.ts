@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { SwPush } from '@angular/service-worker';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-register-button',
@@ -18,13 +18,23 @@ export class RegisterButtonComponent {
   private _subscription: PushSubscription | null = null;
   private baseUrl = environment.baseUrl;
   public operationName: string = 'Subscribe';
+  @Output() subscribedEvent = new EventEmitter<boolean>();
 
   constructor(
     private swPush: SwPush,
     private httpClient: HttpClient) {
       swPush.subscription.subscribe((subscription) => {
-      this._subscription = subscription;
-      this.operationName = (this._subscription === null) ? 'Subscribe' : 'Unsubscribe';
+        this._subscription = subscription;
+
+        if (this._subscription === null)
+        {
+          this.operationName = 'Subscribe';
+          this.subscribedEvent.emit(false);
+        }
+        else {
+          this.operationName = 'Unsubscribe';
+          this.subscribedEvent.emit(true);
+        }
     });
   }
 
@@ -33,6 +43,12 @@ export class RegisterButtonComponent {
   }
 
   private subscribe() {
+    if (!environment.production) {
+      this.subscribedEvent.emit(true);
+      this.operationName = 'Unsubscribe';
+      return;
+    }
+
     // Retrieve public VAPID key from the server
     this.httpClient.get(this.baseUrl + 'api/PublicKey', { responseType: 'text' })
       .subscribe(publicKey => {
@@ -54,6 +70,12 @@ export class RegisterButtonComponent {
   }
 
   private unsubscribe(endpoint: string) {
+    if (!environment.production) {
+      this.subscribedEvent.emit(false);
+      this.operationName = 'Subscribe';
+      return;
+    }
+
     this.swPush.unsubscribe()
       .then(() => this.httpClient.delete(this.baseUrl + 'api/PushSubscriptions/' + encodeURIComponent(endpoint)).subscribe(() => { },
         error => console.error(error)

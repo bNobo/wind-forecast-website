@@ -1,0 +1,9 @@
+<div class="container mt-5">
+    <div class="row alert alert-info align-items-center justify-content-evenly">
+        <div *ngIf="!subscribed" class="col-md text-center m-2">To subscribe to notifications and receive an alert in case of rain and/or strong wind forecast, please click on Subscribe.</div>
+        <div *ngIf="subscribed" class="col-md text-center m-2">Congratulations! You have succesfully subscribed and you will receive notifications. If don't want to be notified anymore, please click on Unsubscribe.</div>
+        <div class="col-md text-center m-2">
+            <app-register-button (subscribedEvent)="setSubscribed($event)"></app-register-button>
+        </div>
+    </div>
+</div>
