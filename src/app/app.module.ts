@@ -10,6 +10,7 @@ import { ViewTemplateComponent } from './views/view-template/view-template.compo
 import { HomeComponent } from './views/home/home.component';
 import { ForecastModule } from './forecast-module/forecast.module';
 import { NotificationModule } from './notification-module/notification.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { NotificationModule } from './notification-module/notification.module';
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     HttpClientModule,
     ForecastModule,
-    NotificationModule
+    NotificationModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
