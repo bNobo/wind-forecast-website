@@ -1,0 +1,25 @@
+{
+  "forecasts": [
+    {
+      "id": "tomorrow",
+      "weathers": [
+        {
+          "title": "Morning",
+          "weatherSymbol": "☀️"
+        },
+        { 
+          "title": "Afternoon",
+          "weatherSymbol": "⛅️"
+        },
+        { 
+          "title": "Evening",
+          "weatherSymbol": "🌧"
+        },
+        { 
+          "title": "Night",
+          "weatherSymbol": "⛈"
+        }
+      ]
+    }
+  ]
+}

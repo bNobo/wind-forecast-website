@@ -1,5 +1,7 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Weather, Weather_Symbol } from 'src/app/interfaces/weather';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-tomorrow-forecast',
@@ -8,27 +10,19 @@ import { Weather, Weather_Symbol } from 'src/app/interfaces/weather';
 })
 export class TomorrowForecastComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(private httpClient: HttpClient) { 
+    this.baseUrl = environment.baseUrl;
   }
 
-  public weathers: Array<Weather> = [
-    {
-      title: "Morning",
-      weatherSymbol: Weather_Symbol.Sunny
-    },
-    { 
-      title: "Afternoon",
-      weatherSymbol: Weather_Symbol.PartlyCloudy
-    },
-    { 
-      title: "Evening",
-      weatherSymbol: Weather_Symbol.HeavyRain
-    },
-    { 
-      title: "Night",
-      weatherSymbol: Weather_Symbol.ThunderyShowers
-    }
-  ]
+  private readonly baseUrl: string;
+
+  ngOnInit(): void {
+    this.httpClient
+      .get(this.baseUrl + 'api/forecasts/tomorrow', { responseType: 'text' })                 
+      .subscribe(json => {
+        this.weathers = JSON.parse(json).weathers;
+      });
+  }
+
+  public weathers: Array<Weather> = []
 }
