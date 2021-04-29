@@ -5,19 +5,19 @@
       "weathers": [
         {
           "title": "Morning",
-          "weatherSymbol": "☀️"
+          "weatherSymbol": "🌤"
         },
         { 
           "title": "Afternoon",
-          "weatherSymbol": "⛅️"
+          "weatherSymbol": "☀"
         },
         { 
           "title": "Evening",
-          "weatherSymbol": "🌧"
+          "weatherSymbol": "⛈"
         },
         { 
           "title": "Night",
-          "weatherSymbol": "⛈"
+          "weatherSymbol": "☁"
         }
       ]
     }
