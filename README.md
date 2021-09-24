@@ -8,4 +8,4 @@ Suivre les instructions ici : https://certbot.eff.org/lets-encrypt/debianstretch
 
 ## SSH
 
-`ssh -p <port> -i ~/.ssh/raspberry <login>@boncocotier.duckdns.org`
+`ssh -p <port> -i ~/.ssh/<private_key> <login>@boncocotier.duckdns.org`
