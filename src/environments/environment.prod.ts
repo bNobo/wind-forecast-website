@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseUrl: 'https://boncocotier.duckdns.org/'
+  baseUrl: 'https://wind-forecast-api.azurewebsites.net/'
 };
